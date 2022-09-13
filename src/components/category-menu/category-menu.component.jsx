@@ -2,6 +2,8 @@ import CategoryItem from '../category-item/category-item.component';
 
 import categories from '../directories/categories.directory';
 
+import './category-menu.styles.scss'
+
 const CategoryMenu = () => {
   return (
     <div className='categories-container'>
