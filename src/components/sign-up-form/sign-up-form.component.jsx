@@ -21,7 +21,7 @@ const SignUpForm = ({ logUser }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log(formFields);
+  console.log('SignUp', formFields);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
