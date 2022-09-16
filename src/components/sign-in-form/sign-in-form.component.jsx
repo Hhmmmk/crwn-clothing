@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 import {
@@ -6,8 +6,10 @@ import {
   createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils';
 
-import { Button } from '../button/button.component';
 import { FormInput } from '../form-input/form-input.component';
+import { Button } from '../button/button.component';
+
+import { UserContext } from '../context/user.context';
 
 import './sign-in-form.styles.scss';
 
@@ -20,11 +22,16 @@ export const SignInForm = ({ googleSignIn }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  console.log('SignIn', formFields);
+  const { setCurrentUser } = useContext(UserContext);
 
   const logGooglePopupUser = async () => {
     const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    setCurrentUser(user);
+    await createUserDocumentFromAuth(user);
+  };
+
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
   };
 
   const handleChange = (event) => {
@@ -33,19 +40,24 @@ export const SignInForm = ({ googleSignIn }) => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      signInAuthUserWithEmailAndPassword(email, password);
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
 
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
-      console.log(error);
+      if (
+        error.code === 'auth/user-not-found' ||
+        error.code === 'auth/wrong-password'
+      ) {
+        alert("Email or Password  doesn't exist.");
+      }
     }
   };
 
