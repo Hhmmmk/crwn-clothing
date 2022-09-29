@@ -57,18 +57,6 @@ const SignUpForm = ({ logUser }) => {
         console.log('user creation created an error', error);
       }
     }
-
-    // if (
-    //   !displayName ||
-    //   !email ||
-    //   !password ||
-    //   !confirmPassword ||
-    //   password !== confirmPassword
-    // )
-    //   return;
-
-    // const authUser = await createAuthUserWithEmailAndPassword(email, password);
-    // const userDocRef = await createUserDocumentFromAuth(authUser);
   };
 
   return (

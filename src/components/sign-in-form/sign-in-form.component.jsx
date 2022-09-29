@@ -7,7 +7,7 @@ import {
 } from '../../utils/firebase/firebase.utils';
 
 import { FormInput } from '../form-input/form-input.component';
-import { Button } from '../button/button.component';
+import { Button, BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 import './sign-in-form.styles.scss';
 
@@ -82,7 +82,7 @@ export const SignInForm = ({ googleSignIn }) => {
 
           <Button
             type='button'
-            buttonType='google'
+            buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={logGooglePopupUser}
           >
             Sign In with Google
