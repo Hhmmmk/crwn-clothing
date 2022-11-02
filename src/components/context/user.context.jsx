@@ -38,8 +38,6 @@ export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
   const { currentUser } = state;
 
-  console.log('currentUser', currentUser);
-
   const setCurrentUser = (user) => {
     dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user });
   };
@@ -54,10 +52,7 @@ export const UserProvider = ({ children }) => {
         createUserDocumentFromAuth(user);
       }
       setCurrentUser(user);
-      console.log('authUser', user);
     });
-
-    console.log('currentUser', currentUser);
 
     return unsubscribe;
   }, [currentUser]);
