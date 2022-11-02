@@ -53,6 +53,8 @@ export const SignInForm = ({ googleSignIn }) => {
       );
 
       resetFormFields();
+
+      goToHomePage();
     } catch (error) {
       if (
         error.code === 'auth/user-not-found' ||
