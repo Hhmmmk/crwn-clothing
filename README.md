@@ -3,7 +3,7 @@
 
 #### A Complete E-Commerce App
 
-- Working LogIn Page using SignIn with google Provider and Email Login Provider from Firebase authentication.
+- Working LogIn Page using SignIn with Google Provider and Email Login Provider from Firebase authentication.
 - Uses Cloud Firestore as a solution for data storage.
 
 #### Tech Stack
